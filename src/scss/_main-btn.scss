@@ -1,0 +1,95 @@
+@use "./variables" as v;
+
+.main-btn {
+  position: relative;
+  padding: 0;
+  font-family: inherit;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: v.$accent-color;
+  border-radius: 0.5rem;
+  color: v.$light;
+  height: 3.8rem;
+  aspect-ratio: 1;
+  outline-color: transparent;
+  outline-style: solid;
+  outline-width: 0.1rem;
+  transition-property: background-color, outline-color, translate;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+
+  @media (hover: hover) {
+    cursor: v.$custom-pointer;
+
+    &:hover {
+      background-color: v.$purple--700;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:focus-visible {
+    outline-color: v.$accent-color;
+    background-color: v.$purple--700;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    translate: 0 0.4rem;
+  }
+
+  svg {
+    aspect-ratio: 1;
+    flex-shrink: 0;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 0.4rem v.$accent-color;
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  &--drop {
+    column-gap: 2.6rem;
+    text-transform: uppercase;
+    padding-inline: 1rem;
+
+    svg {
+      width: 0.6rem;
+    }
+  }
+
+  &--theme {
+    svg {
+      width: 2.2rem;
+    }
+  }
+
+  &--add {
+    position: relative;
+    padding: 1.3rem;
+    align-self: flex-end;
+    flex-shrink: 0;
+    margin-top: auto;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+
+    svg {
+      width: 2.4rem;
+    }
+  }
+}

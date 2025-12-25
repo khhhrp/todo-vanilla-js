@@ -1,1 +1,13 @@
+//base
 @use "./scss/custom-reset";
+@use "./scss/variables";
+@use "./scss/base";
+
+//components
+@use "./scss/todo";
+@use "./scss/main-btn";
+@use "./scss/field";
+@use "./scss/check";
+
+//utils
+@use "./scss/utils";

@@ -1,0 +1,112 @@
+@use "./variables" as v;
+
+.todo {
+  min-height: 100dvh;
+  padding-block: 4rem;
+  max-width: 75rem;
+  width: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  color: v.$dark;
+
+  &__title {
+    font-size: 2.6rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-end;
+    column-gap: 1.6rem;
+  }
+
+  &__header-actions {
+    display: flex;
+    align-items: center;
+    column-gap: 1.6rem;
+  }
+
+  &__list {
+    max-width: 52rem;
+    width: 100%;
+    margin-inline: auto;
+    padding-top: 2.9rem;
+  }
+
+  &__item {
+    display: flex;
+
+    &:not(:last-child) {
+      border-bottom: 0.1rem solid rgba(v.$accent-color, 0.5);
+    }
+  }
+
+  &__check {
+    padding-block: 2rem;
+    flex-grow: 1;
+  }
+
+  &__item-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item-btn {
+    height: 4.8rem;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: 0.5rem;
+    outline-color: transparent;
+    outline-style: solid;
+    outline-width: 0.1rem;
+    background-color: transparent;
+    color: v.$gray;
+    transition-property: color, outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+
+    @media (hover: hover) {
+      cursor: v.$custom-pointer;
+    }
+
+    &:focus-visible {
+      outline-color: rgba(v.$accent-color, 0.5);
+    }
+
+    svg {
+      width: 1.8rem;
+      aspect-ratio: 1;
+    }
+
+    &--change {
+      @media (hover: hover) {
+        &:hover {
+          color: v.$accent-color;
+        }
+      }
+
+      &:focus-visible {
+        color: v.$accent-color;
+      }
+    }
+
+    &--delete {
+      @media (hover: hover) {
+        &:hover {
+          color: v.$red;
+        }
+      }
+
+      &:focus-visible {
+        color: v.$red;
+      }
+    }
+  }
+}

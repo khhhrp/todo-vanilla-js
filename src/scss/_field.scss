@@ -1,0 +1,120 @@
+@use "sass:math";
+@use "./variables" as v;
+
+$input-height: 3.8rem;
+$input-left-padding: 1.6rem;
+$input-right-padding: 3.8rem;
+$half-input-height: math.div($input-height, 2);
+$field-gap: 1rem;
+$border-r: 0.5rem;
+
+.field {
+  $root: &;
+  display: flex;
+  flex-direction: column;
+  row-gap: $field-gap;
+  position: relative;
+  width: 100%;
+
+  &:has(#{$root}__input:not(:placeholder-shown)) {
+    #{$root}__label {
+      translate: 0 0;
+      color: v.$dark;
+    }
+  }
+
+  &:has(#{$root}__btn) {
+    #{$root} {
+      &__label {
+        width: calc(100% - (#{$input-left-padding + $input-right-padding}));
+      }
+
+      &__input {
+        padding-right: $input-right-padding;
+      }
+    }
+  }
+
+  &__label {
+    width: calc(100% - (#{$input-left-padding * 2}));
+    position: relative;
+    translate: $input-left-padding
+      calc((#{$half-input-height + $field-gap}) + 50%);
+    color: rgba(v.$accent-color, 0.5);
+    transition-property: translate, color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__inner {
+    position: relative;
+  }
+
+  &__input {
+    padding-block: 0;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: v.$accent-color;
+    width: 100%;
+    padding-inline: $input-left-padding;
+    height: $input-height;
+    border: 0.1rem solid v.$accent-color;
+    border-radius: $border-r;
+    outline-color: transparent;
+    outline-style: solid;
+    outline-width: 0.2rem;
+    transition-property: outline-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+
+    &:focus-visible {
+      outline-color: rgba(v.$accent-color, 0.5);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        outline-color: rgba(v.$accent-color, 0.5);
+      }
+    }
+  }
+
+  &__btn {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    border-top-right-radius: $border-r;
+    border-bottom-right-radius: $border-r;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    translate: 0 -50%;
+    height: 3.8rem;
+    aspect-ratio: 1;
+    color: v.$accent-color;
+    outline: none;
+    transition: background-color 200ms ease;
+
+    @media (hover: hover) {
+      cursor: v.$custom-pointer;
+
+      &:hover {
+        background-color: rgba(v.$accent-color, 0.2);
+      }
+    }
+
+    &:focus {
+      background-color: rgba(v.$accent-color, 0.2);
+    }
+
+    svg {
+      width: 2rem;
+      aspect-ratio: 1;
+    }
+  }
+}

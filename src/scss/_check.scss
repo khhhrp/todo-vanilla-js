@@ -1,0 +1,75 @@
+@use "./variables" as v;
+
+.check {
+  display: flex;
+  column-gap: 1.6rem;
+  align-items: center;
+
+  @media (hover: hover) {
+    cursor: v.$custom-pointer;
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.6rem;
+    aspect-ratio: 1;
+    border: 0.1rem solid v.$accent-color;
+    border-radius: 0.2rem;
+    color: transparent;
+    outline-color: transparent;
+    outline-style: solid;
+    outline-width: 0.2rem;
+    transition-property: color, background-color, border-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+
+    svg {
+      width: 1.4rem;
+      aspect-ratio: 1;
+    }
+  }
+
+  &__label {
+    font-size: 2rem;
+    font-weight: 500;
+    position: relative;
+    color: v.$dark;
+    overflow: hidden;
+    transition: opacity 200ms ease;
+  }
+
+  &__input:checked ~ &__box {
+    background-color: v.$accent-color;
+    color: v.$light;
+  }
+
+  &__input:checked ~ &__label {
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
+
+  &__input:disabled ~ &__box {
+    border-color: rgba(v.$dark, 0.3);
+  }
+
+  &__input:disabled ~ &__label {
+    opacity: 0.5;
+  }
+
+  &__input:checked:disabled ~ &__box {
+    border-color: rgba(v.$dark, 0.3);
+    background-color: rgba(v.$dark, 0.3);
+  }
+
+  &__input:focus-visible ~ &__box,
+  &__input:checked:focus-visible ~ &__box {
+    outline-color: rgba(v.$accent-color, 0.5);
+  }
+
+  &__input:checked:focus-visible ~ &__box {
+    background-color: v.$purple--700;
+  }
+}

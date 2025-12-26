@@ -1,11 +1,11 @@
 @use "./variables" as v;
 
 .main-btn {
-  position: relative;
-  padding: 0;
   font-family: inherit;
   font-size: 1.8rem;
   font-weight: 500;
+  position: relative;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,10 +15,11 @@
   color: v.$light;
   height: 3.8rem;
   aspect-ratio: 1;
+  text-transform: uppercase;
   outline-color: transparent;
   outline-style: solid;
   outline-width: 0.1rem;
-  transition-property: background-color, outline-color, translate;
+  transition-property: background-color, outline-color, border-color, color;
   transition-duration: 200ms;
   transition-timing-function: ease;
 
@@ -43,10 +44,6 @@
     }
   }
 
-  &:active {
-    translate: 0 0.4rem;
-  }
-
   svg {
     aspect-ratio: 1;
     flex-shrink: 0;
@@ -62,16 +59,6 @@
     transition: opacity 200ms ease;
   }
 
-  &--drop {
-    column-gap: 2.6rem;
-    text-transform: uppercase;
-    padding-inline: 1rem;
-
-    svg {
-      width: 0.6rem;
-    }
-  }
-
   &--theme {
     svg {
       width: 2.2rem;
@@ -79,17 +66,32 @@
   }
 
   &--add {
-    position: relative;
     padding: 1.3rem;
-    align-self: flex-end;
-    flex-shrink: 0;
-    margin-top: auto;
+    margin-left: auto;
     width: 5rem;
     height: 5rem;
     border-radius: 50%;
 
     svg {
       width: 2.4rem;
+    }
+  }
+
+  &--invert {
+    border: 0.1rem solid v.$accent-color;
+    color: v.$accent-color;
+    background-color: v.$light;
+
+    @media (hover: hover) {
+      &:hover {
+        color: v.$light;
+        background-color: v.$purple--700;
+        border-color: transparent;
+      }
+    }
+
+    &::focus-visible {
+      color: v.$light;
     }
   }
 }

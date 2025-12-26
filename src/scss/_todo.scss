@@ -1,10 +1,21 @@
 @use "./variables" as v;
 
+@mixin item-btn-interactive($color) {
+  &:active,
+  &:focus-visible {
+    color: $color;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: $color;
+    }
+  }
+}
+
 .todo {
-  min-height: 100dvh;
+  $root: &;
   padding-block: 4rem;
-  max-width: 75rem;
-  width: 100%;
   margin-inline: auto;
   display: flex;
   flex-direction: column;
@@ -19,14 +30,21 @@
 
   &__header {
     display: flex;
-    align-items: flex-end;
-    column-gap: 1.6rem;
+    gap: 1.6rem;
+    flex-direction: column;
+
+    @media (width >= 768px) {
+      flex-direction: row;
+      align-items: flex-end;
+    }
   }
 
   &__header-actions {
+    position: relative;
     display: flex;
     align-items: center;
     column-gap: 1.6rem;
+    justify-content: flex-end;
   }
 
   &__list {
@@ -42,6 +60,18 @@
     &:not(:last-child) {
       border-bottom: 0.1rem solid rgba(v.$accent-color, 0.5);
     }
+
+    @media (hover: hover) {
+      cursor: v.$custom-pointer;
+
+      &:hover {
+        #{$root} {
+          &__item-actions {
+            opacity: 1;
+          }
+        }
+      }
+    }
   }
 
   &__check {
@@ -52,6 +82,12 @@
   &__item-actions {
     display: flex;
     align-items: center;
+    opacity: 1;
+
+    @media (width >= 768px) {
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
   }
 
   &__item-btn {
@@ -86,27 +122,11 @@
     }
 
     &--change {
-      @media (hover: hover) {
-        &:hover {
-          color: v.$accent-color;
-        }
-      }
-
-      &:focus-visible {
-        color: v.$accent-color;
-      }
+      @include item-btn-interactive(v.$accent-color);
     }
 
     &--delete {
-      @media (hover: hover) {
-        &:hover {
-          color: v.$red;
-        }
-      }
-
-      &:focus-visible {
-        color: v.$red;
-      }
+      @include item-btn-interactive(v.$red);
     }
   }
 }

@@ -33,12 +33,16 @@
   }
 
   &__label {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 500;
     position: relative;
     color: v.$dark;
     overflow: hidden;
     transition: opacity 200ms ease;
+
+    @media (width >= 768px) {
+      font-size: 2rem;
+    }
   }
 
   &__input:checked ~ &__box {

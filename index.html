@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0 viewport-fit=cover"
+    />
     <link rel="icon" href="./src/img/favicon.ico" sizes="32x32" />
     <link rel="icon" href="./src/img/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./src/img/apple-touch-icon.png" />
@@ -147,110 +150,141 @@
         ></path>
       </symbol>
     </svg>
-    <div class="todo">
-      <h1 class="todo__title">TODO LIST</h1>
-      <div class="todo__header">
-        <div class="field">
-          <span class="field__label">Search note...</span>
-          <div class="field__inner">
-            <input type="search" placeholder="" class="field__input" />
-            <button type="submit" class="field__btn">
+    <div class="container">
+      <div class="todo">
+        <h1 class="todo__title">TODO LIST</h1>
+        <div class="todo__header">
+          <div class="field todo__field">
+            <span class="field__label">Search note...</span>
+            <div class="field__inner">
+              <input type="search" placeholder=" " class="field__input" />
+              <button type="submit" class="field__btn">
+                <svg class="icon">
+                  <use href="#search"></use>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="todo__header-actions">
+            <select class="main-select">
+              <option class="main-select__option" value="all">All</option>
+              <option class="main-select__option" value="complete">
+                Complete
+              </option>
+              <option class="main-select__option" value="incomplete">
+                Incomplete
+              </option>
+            </select>
+            <button type="button" class="main-btn main-btn--theme">
               <svg class="icon">
-                <use href="#search"></use>
+                <use href="#moon"></use>
               </svg>
             </button>
           </div>
         </div>
-        <div class="todo__header-actions">
-          <button type="button" class="main-btn main-btn--drop">
-            All
-            <svg class="icon">
-              <use href="#chevron-top"></use>
-            </svg>
-          </button>
-          <button type="button" class="main-btn main-btn--theme">
-            <svg class="icon">
-              <use href="#moon"></use>
-            </svg>
-          </button>
+        <ul class="todo__list">
+          <li class="todo__item">
+            <label class="check todo__check">
+              <input type="checkbox" class="check__input visually-hidden" />
+              <span class="check__box">
+                <svg class="icon">
+                  <use href="#check"></use>
+                </svg>
+              </span>
+              <span class="check__label">NOTE #1</span>
+            </label>
+            <div class="todo__item-actions">
+              <button
+                type="button"
+                class="todo__item-btn todo__item-btn--change"
+              >
+                <svg class="icon">
+                  <use href="#change"></use>
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="todo__item-btn todo__item-btn--delete"
+              >
+                <svg class="icon">
+                  <use href="#delete"></use>
+                </svg>
+              </button>
+            </div>
+          </li>
+          <li class="todo__item">
+            <label class="check todo__check">
+              <input
+                type="checkbox"
+                checked
+                class="check__input visually-hidden"
+              />
+              <span class="check__box">
+                <svg class="icon">
+                  <use href="#check"></use>
+                </svg>
+              </span>
+              <span class="check__label">NOTE #1</span>
+            </label>
+            <div class="todo__item-actions">
+              <button
+                type="button"
+                class="todo__item-btn todo__item-btn--change"
+              >
+                <svg class="icon">
+                  <use href="#change"></use>
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="todo__item-btn todo__item-btn--delete"
+              >
+                <svg class="icon">
+                  <use href="#delete"></use>
+                </svg>
+              </button>
+            </div>
+          </li>
+        </ul>
+        <div class="empty">
+          <img class="empty__img" src="./src/img/empty.webp" alt="" />
+          <p class="empty__text">Empty...</p>
         </div>
       </div>
-      <ul class="todo__list">
-        <li class="todo__item">
-          <label class="check todo__check">
-            <input type="checkbox" class="check__input visually-hidden" />
-            <span class="check__box">
-              <svg class="icon">
-                <use href="#check"></use>
-              </svg>
-            </span>
-            <span class="check__label">NOTE #1</span>
-          </label>
-          <div class="todo__item-actions">
-            <button type="button" class="todo__item-btn todo__item-btn--change">
-              <svg class="icon">
-                <use href="#change"></use>
-              </svg>
-            </button>
-            <button type="button" class="todo__item-btn todo__item-btn--delete">
-              <svg class="icon">
-                <use href="#delete"></use>
-              </svg>
-            </button>
-          </div>
-        </li>
-        <li class="todo__item">
-          <label class="check todo__check">
-            <input
-              type="checkbox"
-              checked
-              class="check__input visually-hidden"
-            />
-            <span class="check__box">
-              <svg class="icon">
-                <use href="#check"></use>
-              </svg>
-            </span>
-            <span class="check__label">NOTE #2</span>
-          </label>
-        </li>
-        <li class="todo__item">
-          <label class="check todo__check">
-            <input
-              type="checkbox"
-              disabled
-              class="check__input visually-hidden"
-            />
-            <span class="check__box">
-              <svg class="icon">
-                <use href="#check"></use>
-              </svg>
-            </span>
-            <span class="check__label">NOTE #3</span>
-          </label>
-        </li>
-        <li class="todo__item">
-          <label class="check todo__check">
-            <input
-              type="checkbox"
-              disabled
-              checked
-              class="check__input visually-hidden"
-            />
-            <span class="check__box">
-              <svg class="icon">
-                <use href="#check"></use>
-              </svg>
-            </span>
-            <span class="check__label">NOTE #4</span>
-          </label>
-        </li>
-      </ul>
-      <button type="button" class="main-btn main-btn--add">
+    </div>
+    <div class="wrapper container">
+      <button
+        popovertarget="my-popover"
+        popovertargetaction="show"
+        type="button"
+        class="main-btn main-btn--add"
+      >
         <svg class="icon">
           <use href="#plus"></use>
         </svg>
       </button>
+    </div>
+    <div class="popover" popover id="my-popover">
+      <div class="popover__modal">
+        <h2 class="popover__title">New Note</h2>
+        <div class="field popover__field">
+          <span class="field__label">Input your note...</span>
+          <div class="field__inner">
+            <input type="text" placeholder=" " class="field__input" />
+          </div>
+        </div>
+        <div class="popover__actions">
+          <button
+            type="button"
+            popovertarget="my-popover"
+            popovertargetaction="hide"
+            class="main-btn main-btn--invert popover__btn"
+          >
+            Cancel
+          </button>
+          <button type="button" class="main-btn popover__btn">Apply</button>
+        </div>
+      </div>
     </div>
     <script type="module" src="./src/js/main.js"></script>
   </body>

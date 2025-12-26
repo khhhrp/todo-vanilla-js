@@ -6,8 +6,11 @@
 //components
 @use "./scss/todo";
 @use "./scss/main-btn";
+@use "./scss/main-select";
 @use "./scss/field";
 @use "./scss/check";
+@use "./scss/popover";
+@use "./scss/empty";
 
 //utils
 @use "./scss/utils";

@@ -16,6 +16,10 @@ $border-r: 0.5rem;
   position: relative;
   width: 100%;
 
+  @media (width >= 768px) {
+    max-width: 59.5rem;
+  }
+
   &:has(#{$root}__input:not(:placeholder-shown)) {
     #{$root}__label {
       translate: 0 0;
@@ -45,6 +49,9 @@ $border-r: 0.5rem;
     transition-duration: 200ms;
     transition-timing-function: ease;
     pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     z-index: 1;
   }
 
@@ -63,6 +70,7 @@ $border-r: 0.5rem;
     height: $input-height;
     border: 0.1rem solid v.$accent-color;
     border-radius: $border-r;
+    background-color: v.$light;
     outline-color: transparent;
     outline-style: solid;
     outline-width: 0.2rem;

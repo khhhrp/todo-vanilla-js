@@ -1,0 +1,64 @@
+@use "./variables" as v;
+
+.main-select {
+  position: relative;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 1.8rem;
+  min-width: 9.3rem;
+  flex-grow: 1;
+  height: 3.8rem;
+  color: v.$light;
+  border: none;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  background-color: v.$accent-color;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='4' fill='none'%3E%3Cpath stroke='%23F7F7F7' stroke-linecap='round' stroke-linejoin='round' d='M3.87 3.5.5.5M7.238.5l-3.369 3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.8rem auto;
+  padding-left: 1rem;
+  padding-right: 2.8rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 0.4rem v.$accent-color;
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+
+  @media (width >= 768px) {
+    max-width: 20rem;
+  }
+
+  @media (hover: hover) {
+    cursor: v.$custom-pointer;
+
+    &:hover {
+      background-color: v.$purple--700;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:focus {
+    outline-color: transparent;
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    outline-color: v.$accent-color;
+    background-color: v.$purple--700;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}

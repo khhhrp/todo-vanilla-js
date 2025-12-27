@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./src/style.scss" />
@@ -182,72 +182,14 @@
             </button>
           </div>
         </div>
-        <ul class="todo__list">
-          <li class="todo__item">
-            <label class="check todo__check">
-              <input type="checkbox" class="check__input visually-hidden" />
-              <span class="check__box">
-                <svg class="icon">
-                  <use href="#check"></use>
-                </svg>
-              </span>
-              <span class="check__label">NOTE #1</span>
-            </label>
-            <div class="todo__item-actions">
-              <button
-                type="button"
-                class="todo__item-btn todo__item-btn--change"
-              >
-                <svg class="icon">
-                  <use href="#change"></use>
-                </svg>
-              </button>
-              <button
-                type="button"
-                class="todo__item-btn todo__item-btn--delete"
-              >
-                <svg class="icon">
-                  <use href="#delete"></use>
-                </svg>
-              </button>
-            </div>
-          </li>
-          <li class="todo__item">
-            <label class="check todo__check">
-              <input
-                type="checkbox"
-                checked
-                class="check__input visually-hidden"
-              />
-              <span class="check__box">
-                <svg class="icon">
-                  <use href="#check"></use>
-                </svg>
-              </span>
-              <span class="check__label">NOTE #1</span>
-            </label>
-            <div class="todo__item-actions">
-              <button
-                type="button"
-                class="todo__item-btn todo__item-btn--change"
-              >
-                <svg class="icon">
-                  <use href="#change"></use>
-                </svg>
-              </button>
-              <button
-                type="button"
-                class="todo__item-btn todo__item-btn--delete"
-              >
-                <svg class="icon">
-                  <use href="#delete"></use>
-                </svg>
-              </button>
-            </div>
-          </li>
-        </ul>
+        <ul class="todo__list"></ul>
         <div class="empty">
-          <img class="empty__img" src="./src/img/empty.webp" alt="" />
+          <img
+            class="empty__img"
+            draggable="false"
+            src="./src/img/empty.webp"
+            alt=""
+          />
           <p class="empty__text">Empty...</p>
         </div>
       </div>
@@ -270,7 +212,11 @@
         <div class="field popover__field">
           <span class="field__label">Input your note...</span>
           <div class="field__inner">
-            <input type="text" placeholder=" " class="field__input" />
+            <input
+              type="text"
+              placeholder=" "
+              class="field__input popover__input"
+            />
           </div>
         </div>
         <div class="popover__actions">
@@ -282,7 +228,9 @@
           >
             Cancel
           </button>
-          <button type="button" class="main-btn popover__btn">Apply</button>
+          <button type="button" class="main-btn popover__btn add-btn">
+            Apply
+          </button>
         </div>
       </div>
     </div>

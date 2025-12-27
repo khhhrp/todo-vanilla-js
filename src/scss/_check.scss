@@ -35,9 +35,8 @@
   &__label {
     font-size: 1.6rem;
     font-weight: 500;
-    position: relative;
     color: v.$dark;
-    overflow: hidden;
+    overflow-wrap: anywhere;
     transition: opacity 200ms ease;
 
     @media (width >= 768px) {

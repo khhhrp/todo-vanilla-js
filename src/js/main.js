@@ -4,10 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const todoList = document.querySelector(".todo__list");
   const emptyBlock = document.querySelector(".empty");
   const addNoteButton = document.querySelector(".add-btn");
-  const addNodeInput = document.querySelector(".popover__input");
+  const addNoteInput = document.querySelector(".popover__input");
   const popover = document.getElementById("my-popover");
   const select = document.querySelector(".main-select");
-
   const todos = getLocalStorage();
 
   select.addEventListener("change", (e) => {
@@ -36,8 +35,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   toggleEmptyBlock();
 
+  addNoteInput.addEventListener("input", (e) => {
+    if (e.target.value.startsWith(" ")) {
+      e.target.value = "";
+      return;
+    }
+  });
+
   addNoteButton.addEventListener("click", () => {
-    const value = addNodeInput.value.trim();
+    const value = addNoteInput.value.trim();
     const id = `${Math.random()}-${Date.now()}`;
     const selectValue = select.value;
 
@@ -52,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Поле ввода не может быть пустым");
     }
 
-    addNodeInput.value = "";
+    addNoteInput.value = "";
   });
 
   const createIcon = (iconName) => {
@@ -126,4 +132,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   createElements(todos);
+
+  const searchInput = document.querySelector(".todo__input");
+
+  searchInput.addEventListener("input", (e) => {
+    const currentTaskArray = getLocalStorage(todos);
+
+    if (e.target.value.startsWith(" ")) {
+      e.target.value = "";
+      return;
+    }
+
+    const searchValue = searchInput.value.trim();
+
+    // const findItems = currentTaskArray.filter((el) => {
+    //   if (el.value.startsWith(searchValue)) {
+    //     return el;
+    //   }
+    // });
+
+    // createElements(findItems);
+
+    currentTaskArray.forEach((el) => {
+      if (el.value.startsWith(searchValue)) {
+        const findItem = document.querySelector(`[data-id="${el.id}"]`);
+
+        const label = findItem.querySelector(".check__label");
+        label.style.cssText = "color: green";
+      }
+    });
+  });
 });

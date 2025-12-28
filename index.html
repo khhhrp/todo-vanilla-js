@@ -19,7 +19,7 @@
     <title>todo-vanilla-js</title>
   </head>
   <body>
-    <svg width="0" height="0" class="visually-hidden">
+    <svg width="0" height="0" class="visually-hidden svg-list">
       <symbol
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -157,7 +157,11 @@
           <div class="field todo__field">
             <span class="field__label">Search note...</span>
             <div class="field__inner">
-              <input type="search" placeholder=" " class="field__input" />
+              <input
+                type="search"
+                placeholder=" "
+                class="field__input todo__input"
+              />
               <button type="submit" class="field__btn">
                 <svg class="icon">
                   <use href="#search"></use>

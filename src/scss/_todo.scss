@@ -15,6 +15,7 @@
 
 .todo {
   $root: &;
+  height: 100dvh;
   padding-block: 4rem;
   margin-inline: auto;
   display: flex;
@@ -48,6 +49,8 @@
   }
 
   &__list {
+    flex-grow: 1;
+    overflow-y: auto;
     max-width: 52rem;
     width: 100%;
     margin-inline: auto;

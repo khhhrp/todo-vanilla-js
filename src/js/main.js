@@ -28,9 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleEmptyBlock = () => {
     const items = getLocalStorage();
 
-    items.length <= 0
-      ? emptyBlock.classList.add("empty--active")
-      : emptyBlock.classList.remove("empty--active");
+    if (items.length <= 0) {
+      emptyBlock.style.display = "block";
+      todoList.style.display = "none";
+    } else {
+      emptyBlock.style.display = "none";
+      todoList.style.display = "block";
+    }
   };
 
   toggleEmptyBlock();
@@ -49,8 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (value.length > 0) {
       todos.push({ id, value, checked: false });
-      createElements(filteredArray(todos)[selectValue]);
       addLocalStorage(todos);
+      createElements(filteredArray(todos)[selectValue]);
 
       toggleEmptyBlock();
       popover.hidePopover();
@@ -145,21 +149,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const searchValue = searchInput.value.trim();
 
-    // const findItems = currentTaskArray.filter((el) => {
-    //   if (el.value.startsWith(searchValue)) {
-    //     return el;
-    //   }
-    // });
-
-    // createElements(findItems);
-
-    currentTaskArray.forEach((el) => {
+    const findItemsArr = currentTaskArray.filter((el) => {
       if (el.value.startsWith(searchValue)) {
-        const findItem = document.querySelector(`[data-id="${el.id}"]`);
-
-        const label = findItem.querySelector(".check__label");
-        label.style.cssText = "color: green";
+        return el;
       }
     });
+
+    createElements(findItemsArr);
   });
+
+  const hesoyam = "hesoyam";
+  let word = "";
+  const audio = new Audio(
+    "https://files.voicy.network/public/Content/Clips/Sound/e749f7ae-5248-4200-bc02-f0df48739be7.mp3"
+  );
+
+  document.addEventListener("keydown", (e) => {
+    const currentKey = e.key;
+    word += `${currentKey}`;
+
+    if (!hesoyam.startsWith(word)) {
+      word = "";
+      return;
+    }
+
+    if (word === hesoyam) {
+      createCash();
+      word = "";
+    }
+  });
+
+  let spanHeight = 0;
+  let spanWidth = 0;
+
+  const createCash = () => {
+    const span = document.createElement("span");
+    span.classList.add("cash");
+    span.innerText = "+250 000 $";
+
+    if (spanHeight === 0 || spanWidth === 0) {
+      span.style.visibility = "hidden";
+      document.body.appendChild(span);
+      spanHeight = span.offsetHeight;
+      spanWidth = span.offsetWidth;
+      document.body.removeChild(span);
+      span.style.visibility = "visible";
+    }
+
+    const maxHeight = window.innerHeight - spanHeight;
+    const maxWidth = window.innerWidth - spanWidth;
+
+    span.style.top = Math.random() * maxHeight + "px";
+    span.style.left = Math.random() * maxWidth + "px";
+
+    span.addEventListener("animationend", (e) => {
+      e.target.remove();
+    });
+
+    document.body.appendChild(span);
+    play();
+  };
+
+  const play = () => {
+    audio.volume = 0.2;
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
+  };
 });

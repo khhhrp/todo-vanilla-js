@@ -52,9 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectValue = select.value;
 
     if (value.length > 0) {
-      todos.push({ id, value, checked: false });
-      addLocalStorage(todos);
-      createElements(filteredArray(todos)[selectValue]);
+      const currentTodosArr = getLocalStorage();
+      currentTodosArr.push({ id, value, checked: false });
+      addLocalStorage(currentTodosArr);
+      createElements(filteredArray(currentTodosArr)[selectValue]);
 
       toggleEmptyBlock();
       popover.hidePopover();
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector(".todo__input");
 
   searchInput.addEventListener("input", (e) => {
-    const currentTaskArray = getLocalStorage(todos);
+    const currentTaskArray = getLocalStorage();
 
     if (e.target.value.startsWith(" ")) {
       e.target.value = "";
@@ -150,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchValue = searchInput.value.trim();
 
     const findItemsArr = currentTaskArray.filter((el) => {
-      if (el.value.startsWith(searchValue)) {
+      if (el.value.toLowerCase().startsWith(searchValue)) {
         return el;
       }
     });

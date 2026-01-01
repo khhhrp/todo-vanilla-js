@@ -15,7 +15,6 @@
 
 .todo {
   $root: &;
-  height: 100dvh;
   padding-block: 4rem;
   margin-inline: auto;
   display: flex;
@@ -87,7 +86,7 @@
     align-items: center;
     opacity: 1;
 
-    @media (width >= 768px) {
+    @media (width >= 768px) and (hover: hover) {
       opacity: 0;
       transition: opacity 200ms ease;
     }

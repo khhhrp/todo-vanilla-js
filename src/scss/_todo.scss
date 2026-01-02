@@ -50,10 +50,11 @@
   &__list {
     flex-grow: 1;
     overflow-y: auto;
-    max-width: 52rem;
+    max-width: 54rem;
     width: 100%;
     margin-inline: auto;
     padding-top: 2.9rem;
+    padding-inline: 1rem;
   }
 
   &__item {
@@ -85,10 +86,14 @@
     display: flex;
     align-items: center;
     opacity: 1;
+    transition: opacity 200ms ease;
+
+    &:focus-within {
+      opacity: 1;
+    }
 
     @media (width >= 768px) and (hover: hover) {
       opacity: 0;
-      transition: opacity 200ms ease;
     }
   }
 

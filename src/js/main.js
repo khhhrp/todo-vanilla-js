@@ -109,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   todoList.addEventListener("click", (event) => {
     const deleteBtn = event.target.closest(".todo__item-btn--delete");
+    const changeBtn = event.target.closest(".todo__item-btn--change");
     const currentItem = event.target.closest(".todo__item");
     const currentInput = event.target.closest(".check__input");
     const arr = getLocalStorage();
@@ -133,6 +134,57 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       addLocalStorage(mapArray);
+    }
+
+    if (changeBtn) {
+      const checkLabel = currentItem.querySelector(".check__label");
+      const todoCheck = currentItem.querySelector(".todo__check");
+      const originalText = checkLabel.textContent;
+      const input = document.createElement("input");
+
+      input.type = "text";
+      input.value = originalText;
+      input.classList.add("check__change-input", "check__label");
+
+      checkLabel.style.display = "none";
+      todoCheck.appendChild(input);
+      input.focus();
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          input.blur();
+        } else if (e.key === "Escape") {
+          e.preventDefault();
+          input.value = originalText;
+          input.blur();
+        }
+      });
+
+      input.addEventListener("blur", () => {
+        const value = input.value;
+
+        if (value.trim().length === 0) {
+          const filteredArray = arr.filter((el) => el.id !== currentId);
+          addLocalStorage(filteredArray);
+          currentItem?.remove();
+          toggleEmptyBlock();
+          return;
+        }
+
+        if (originalText !== value) {
+          checkLabel.textContent = value;
+
+          const newArr = arr.map((el) => {
+            return el.id === currentId ? { ...el, value: value } : el;
+          });
+
+          addLocalStorage(newArr);
+        }
+
+        input.remove();
+        checkLabel.style.display = "block";
+      });
     }
   });
 

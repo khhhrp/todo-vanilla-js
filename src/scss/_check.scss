@@ -44,6 +44,16 @@
     }
   }
 
+  &__change-input {
+    font-family: inherit;
+    line-height: inherit;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0;
+    background-color: transparent;
+  }
+
   &__input:checked ~ &__box {
     background-color: v.$accent-color;
     color: v.$light;

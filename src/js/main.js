@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const todoList = document.querySelector(".todo__list");
   const emptyBlock = document.querySelector(".empty");
   const addNoteButton = document.querySelector(".add-btn");
+  const openPopoverBtn = document.querySelector('[popovertargetaction="show"]');
   const addNoteInput = document.querySelector(".popover__input");
   const popover = document.getElementById("my-popover");
   const select = document.querySelector(".main-select");
@@ -269,4 +270,25 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.currentTime = 0;
     audio.play();
   };
+
+  document.addEventListener("keydown", (event) => {
+    if (popover.matches(":popover-open")) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        addNoteInput.value = "";
+        popover.hidePopover();
+      }
+
+      if (event.key === "Enter") {
+        event.preventDefault();
+        addNoteButton.click();
+      }
+    }
+  });
+
+  openPopoverBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    popover.showPopover();
+    addNoteInput.focus();
+  });
 });

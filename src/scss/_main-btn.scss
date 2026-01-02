@@ -90,7 +90,7 @@
       }
     }
 
-    &::focus-visible {
+    &:focus-visible {
       color: v.$light;
     }
   }

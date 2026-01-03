@@ -1,5 +1,4 @@
 @use "sass:math";
-@use "./variables" as v;
 
 $input-height: 3.8rem;
 $input-left-padding: 1.6rem;
@@ -23,7 +22,7 @@ $border-r: 0.5rem;
   &:has(#{$root}__input:not(:placeholder-shown)) {
     #{$root}__label {
       translate: 0 0;
-      color: v.$dark;
+      color: var(--dark);
     }
   }
 
@@ -44,7 +43,7 @@ $border-r: 0.5rem;
     position: relative;
     translate: $input-left-padding
       calc((#{$half-input-height + $field-gap}) + 50%);
-    color: rgba(v.$accent-color, 0.5);
+    color: rgba(var(--accent-rgb--white), 0.5);
     transition-property: translate, color;
     transition-duration: 200ms;
     transition-timing-function: ease;
@@ -64,27 +63,27 @@ $border-r: 0.5rem;
     font-family: inherit;
     font-weight: 500;
     font-size: 1.6rem;
-    color: v.$accent-color;
+    color: var(--accent-color--white);
     width: 100%;
     padding-inline: $input-left-padding;
     height: $input-height;
-    border: 0.1rem solid v.$accent-color;
+    border: 0.1rem solid var(--accent-color--white);
     border-radius: $border-r;
-    background-color: v.$light;
+    background-color: var(--light);
     outline-color: transparent;
     outline-style: solid;
     outline-width: 0.2rem;
-    transition-property: outline-color;
+    transition-property: outline-color, background-color, border-color;
     transition-duration: 200ms;
     transition-timing-function: ease;
 
     &:focus-visible {
-      outline-color: rgba(v.$accent-color, 0.5);
+      outline-color: rgba(var(--accent-rgb--white), 0.5);
     }
 
     @media (hover: hover) {
       &:hover {
-        outline-color: rgba(v.$accent-color, 0.5);
+        outline-color: rgba(var(--accent-rgb--white), 0.5);
       }
     }
   }
@@ -104,20 +103,22 @@ $border-r: 0.5rem;
     translate: 0 -50%;
     height: 3.8rem;
     aspect-ratio: 1;
-    color: v.$accent-color;
+    color: var(--accent-color--white);
     outline: none;
-    transition: background-color 200ms ease;
+    transition-property: color, background-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
 
     @media (hover: hover) {
-      cursor: v.$custom-pointer;
+      cursor: var(--custom-pointer);
 
       &:hover {
-        background-color: rgba(v.$accent-color, 0.2);
+        background-color: rgba(var(--accent-rgb--white), 0.2);
       }
     }
 
     &:focus {
-      background-color: rgba(v.$accent-color, 0.2);
+      background-color: rgba(var(--accent-rgb--white), 0.2);
     }
 
     svg {

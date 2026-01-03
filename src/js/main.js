@@ -1,4 +1,4 @@
-import { addLocalStorage, getLocalStorage } from "./localstorage";
+import { addLocalStorageTodos, getLocalStorageTodos } from "./localstorage";
 
 document.addEventListener("DOMContentLoaded", () => {
   const todoList = document.querySelector(".todo__list");
@@ -8,10 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const addNoteInput = document.querySelector(".popover__input");
   const popover = document.getElementById("my-popover");
   const select = document.querySelector(".main-select");
-  const todos = getLocalStorage();
+  const todos = getLocalStorageTodos();
+  const themeSwitcher = document.querySelector("[data-theme-switcher]");
+  const body = document.body;
+
+  const checkDefaultTheme = () => {
+    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
+
+    darkThemeMq.matches
+      ? (body.dataset.theme = "dark")
+      : delete body.dataset.theme;
+  };
+
+  checkDefaultTheme();
 
   select.addEventListener("change", (e) => {
-    const todos = getLocalStorage();
+    const todos = getLocalStorageTodos();
     const value = e.target.value;
     const arr = filteredArray(todos);
 
@@ -27,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const toggleEmptyBlock = () => {
-    const items = getLocalStorage();
+    const items = getLocalStorageTodos();
 
     if (items.length <= 0) {
       emptyBlock.style.display = "block";
@@ -53,9 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectValue = select.value;
 
     if (value.length > 0) {
-      const currentTodosArr = getLocalStorage();
+      const currentTodosArr = getLocalStorageTodos();
       currentTodosArr.push({ id, value, checked: false });
-      addLocalStorage(currentTodosArr);
+      addLocalStorageTodos(currentTodosArr);
       createElements(filteredArray(currentTodosArr)[selectValue]);
 
       toggleEmptyBlock();
@@ -113,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const changeBtn = event.target.closest(".todo__item-btn--change");
     const currentItem = event.target.closest(".todo__item");
     const currentInput = event.target.closest(".check__input");
-    const arr = getLocalStorage();
+    const arr = getLocalStorageTodos();
 
     if (!currentItem) return;
     const currentId = currentItem.dataset.id;
@@ -121,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (deleteBtn) {
       const filteredArray = arr.filter((el) => el.id !== currentId);
 
-      addLocalStorage(filteredArray);
+      addLocalStorageTodos(filteredArray);
       currentItem?.remove();
       toggleEmptyBlock();
       return;
@@ -134,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : el;
       });
 
-      addLocalStorage(mapArray);
+      addLocalStorageTodos(mapArray);
     }
 
     if (changeBtn) {
@@ -167,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (value.trim().length === 0) {
           const filteredArray = arr.filter((el) => el.id !== currentId);
-          addLocalStorage(filteredArray);
+          addLocalStorageTodos(filteredArray);
           currentItem?.remove();
           toggleEmptyBlock();
           return;
@@ -180,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return el.id === currentId ? { ...el, value: value } : el;
           });
 
-          addLocalStorage(newArr);
+          addLocalStorageTodos(newArr);
         }
 
         input.remove();
@@ -194,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector(".todo__input");
 
   searchInput.addEventListener("input", (e) => {
-    const currentTaskArray = getLocalStorage();
+    const currentTaskArray = getLocalStorageTodos();
 
     if (e.target.value.startsWith(" ")) {
       e.target.value = "";
@@ -290,5 +302,11 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
     popover.showPopover();
     addNoteInput.focus();
+  });
+
+  themeSwitcher.addEventListener("click", () => {
+    body.dataset.theme === "dark"
+      ? delete body.dataset.theme
+      : (body.dataset.theme = "dark");
   });
 });

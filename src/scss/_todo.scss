@@ -1,5 +1,3 @@
-@use "./variables" as v;
-
 @mixin item-btn-interactive($color) {
   &:active,
   &:focus-visible {
@@ -20,12 +18,13 @@
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
-  color: v.$dark;
 
   &__title {
     font-size: 2.6rem;
     font-weight: 500;
     text-align: center;
+    color: var(--dark);
+    transition: color 200ms ease;
   }
 
   &__header {
@@ -59,13 +58,14 @@
 
   &__item {
     display: flex;
+    transition: border-color 200ms ease;
 
     &:not(:last-child) {
-      border-bottom: 0.1rem solid rgba(v.$accent-color, 0.5);
+      border-bottom: 0.1rem solid rgba(var(--accent-rgb--white), 0.5);
     }
 
     @media (hover: hover) {
-      cursor: v.$custom-pointer;
+      cursor: var(--custom-pointer);
 
       &:hover {
         #{$root} {
@@ -110,17 +110,17 @@
     outline-style: solid;
     outline-width: 0.1rem;
     background-color: transparent;
-    color: v.$gray;
+    color: var(--gray);
     transition-property: color, outline-color;
     transition-duration: 200ms;
     transition-timing-function: ease;
 
     @media (hover: hover) {
-      cursor: v.$custom-pointer;
+      cursor: var(--custom-pointer);
     }
 
     &:focus-visible {
-      outline-color: rgba(v.$accent-color, 0.5);
+      outline-color: rgba(var(--accent-rgb), 0.5);
     }
 
     svg {
@@ -129,11 +129,11 @@
     }
 
     &--change {
-      @include item-btn-interactive(v.$accent-color);
+      @include item-btn-interactive(var(--accent-color));
     }
 
     &--delete {
-      @include item-btn-interactive(v.$red);
+      @include item-btn-interactive(var(--red));
     }
   }
 }

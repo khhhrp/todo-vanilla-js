@@ -1,12 +1,10 @@
-@use "./variables" as v;
-
 .check {
   display: flex;
   column-gap: 1.6rem;
   align-items: center;
 
   @media (hover: hover) {
-    cursor: v.$custom-pointer;
+    cursor: var(--custom-pointer);
   }
 
   &__box {
@@ -16,7 +14,7 @@
     flex-shrink: 0;
     width: 2.6rem;
     aspect-ratio: 1;
-    border: 0.1rem solid v.$accent-color;
+    border: 0.1rem solid var(--accent-color);
     border-radius: 0.2rem;
     color: transparent;
     outline-color: transparent;
@@ -35,9 +33,11 @@
   &__label {
     font-size: 1.6rem;
     font-weight: 500;
-    color: v.$dark;
+    color: var(--dark);
     overflow-wrap: anywhere;
-    transition: opacity 200ms ease;
+    transition-property: opacity, color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
 
     @media (width >= 768px) {
       font-size: 2rem;
@@ -55,8 +55,8 @@
   }
 
   &__input:checked ~ &__box {
-    background-color: v.$accent-color;
-    color: v.$light;
+    background-color: var(--accent-color);
+    color: #fff;
   }
 
   &__input:checked ~ &__label {
@@ -65,7 +65,7 @@
   }
 
   &__input:disabled ~ &__box {
-    border-color: rgba(v.$dark, 0.3);
+    border-color: rgba(var(--dark-rgb), 0.3);
   }
 
   &__input:disabled ~ &__label {
@@ -73,16 +73,16 @@
   }
 
   &__input:checked:disabled ~ &__box {
-    border-color: rgba(v.$dark, 0.3);
-    background-color: rgba(v.$dark, 0.3);
+    border-color: rgba(var(--dark-rgb), 0.3);
+    background-color: rgba(var(--dark-rgb), 0.3);
   }
 
   &__input:focus-visible ~ &__box,
   &__input:checked:focus-visible ~ &__box {
-    outline-color: rgba(v.$accent-color, 0.5);
+    outline-color: rgba(var(--accent-rgb), 0.5);
   }
 
   &__input:checked:focus-visible ~ &__box {
-    background-color: v.$purple--700;
+    background-color: var(--purple--700);
   }
 }

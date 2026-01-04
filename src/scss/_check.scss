@@ -33,7 +33,7 @@
   &__label {
     font-size: 1.6rem;
     font-weight: 500;
-    color: var(--dark);
+    color: light-dark(var(--dark), var(--light));
     overflow-wrap: anywhere;
     transition-property: opacity, color;
     transition-duration: 200ms;
@@ -65,7 +65,10 @@
   }
 
   &__input:disabled ~ &__box {
-    border-color: rgba(var(--dark-rgb), 0.3);
+    border-color: light-dark(
+      rgba(var(--dark-rgb), 0.3),
+      rgba(var(--light-rgb), 0.3)
+    );
   }
 
   &__input:disabled ~ &__label {
@@ -73,8 +76,14 @@
   }
 
   &__input:checked:disabled ~ &__box {
-    border-color: rgba(var(--dark-rgb), 0.3);
-    background-color: rgba(var(--dark-rgb), 0.3);
+    border-color: light-dark(
+      rgba(var(--dark-rgb), 0.3),
+      rgba(var(--light-rgb), 0.3)
+    );
+    background-color: light-dark(
+      rgba(var(--dark-rgb), 0.3),
+      rgba(var(--light-rgb), 0.3)
+    );
   }
 
   &__input:focus-visible ~ &__box,

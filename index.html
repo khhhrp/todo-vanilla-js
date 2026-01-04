@@ -6,6 +6,27 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0 viewport-fit=cover"
     />
+    <script>
+      function checkTheme() {
+        let currentTheme = "light";
+
+        try {
+          currentTheme = localStorage.getItem("theme");
+
+          if (currentTheme === null) {
+            const isDark = window.matchMedia(
+              "(prefers-color-scheme: dark)"
+            ).matches;
+            currentTheme = isDark ? "dark" : "light";
+            localStorage.setItem("theme", currentTheme);
+          }
+        } catch (error) {}
+
+        document.documentElement.classList.add(currentTheme);
+      }
+
+      checkTheme();
+    </script>
     <link rel="icon" href="./src/img/favicon.ico" sizes="32x32" />
     <link rel="icon" href="./src/img/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./src/img/apple-touch-icon.png" />
@@ -181,13 +202,13 @@
             </select>
 
             <button
-              data-theme-switcher
               aria-label="Переключить тему"
               type="button"
               class="main-btn main-btn--theme"
             >
               <svg class="icon">
-                <use href="#moon"></use>
+                <use class="light-svg" href="#moon"></use>
+                <use class="dark-svg" href="#sun"></use>
               </svg>
             </button>
           </div>

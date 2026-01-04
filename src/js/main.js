@@ -1,4 +1,9 @@
-import { addLocalStorageTodos, getLocalStorageTodos } from "./localstorage";
+import {
+  addLocalStorageTodos,
+  getLocalStorageTodos,
+  addLocalStorageTheme,
+  getLocalStorageTheme,
+} from "./localstorage";
 
 document.addEventListener("DOMContentLoaded", () => {
   const todoList = document.querySelector(".todo__list");
@@ -9,18 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const popover = document.getElementById("my-popover");
   const select = document.querySelector(".main-select");
   const todos = getLocalStorageTodos();
-  const themeSwitcher = document.querySelector("[data-theme-switcher]");
-  const body = document.body;
-
-  const checkDefaultTheme = () => {
-    const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-
-    darkThemeMq.matches
-      ? (body.dataset.theme = "dark")
-      : delete body.dataset.theme;
-  };
-
-  checkDefaultTheme();
+  const themeToggleBtn = document.querySelector(".main-btn--theme");
 
   select.addEventListener("change", (e) => {
     const todos = getLocalStorageTodos();
@@ -304,9 +298,24 @@ document.addEventListener("DOMContentLoaded", () => {
     addNoteInput.focus();
   });
 
-  themeSwitcher.addEventListener("click", () => {
-    body.dataset.theme === "dark"
-      ? delete body.dataset.theme
-      : (body.dataset.theme = "dark");
+  themeToggleBtn.addEventListener("click", () => {
+    const currentTheme = getLocalStorageTheme();
+    const htmlElement = document.documentElement;
+
+    const dark = "dark";
+    const light = "light";
+
+    if (currentTheme === dark) {
+      htmlElement.classList.remove(dark);
+      htmlElement.classList.add(light);
+      addLocalStorageTheme(light);
+      return;
+    }
+
+    if (currentTheme === light) {
+      htmlElement.classList.remove(light);
+      htmlElement.classList.add(dark);
+      addLocalStorageTheme(dark);
+    }
   });
 });

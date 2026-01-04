@@ -1,4 +1,6 @@
 :root {
+  color-scheme: light dark;
+
   --dark: #252525;
   --light: #ffffff;
   --purple--400: #6c63ff;
@@ -6,23 +8,8 @@
   --red: #e50000;
   --gray: #cdcdcd;
   --accent-color: var(--purple--400);
-  --popover-border-color: transparent;
-  --accent-color--white: #6c63ff;
 
   --dark-rgb: 37, 37, 37;
   --light-rgb: 255, 255, 255;
   --accent-rgb: 108, 99, 255;
-  --accent-rgb--white: 108, 99, 255;
-
-  --custom-pointer: url(../img/cursor.png) 14 14, pointer;
-}
-
-[data-theme="dark"] {
-  --dark: #fff;
-  --light: #252525;
-  --accent-color--white: #fff;
-  --accent-rgb--white: 255, 255, 255;
-  --popover-border-color: #fff;
-
-  --custom-pointer: url(../img/cursor-dark-mode.png) 14 14, pointer;
 }
